@@ -7,7 +7,7 @@ import java.io.IOException;
 import com.base.BaseClass;
 import com.pagemanager.PageObjectManager;
 import io.cucumber.java.en.*;
-import junit.framework.Assert;
+import junit.framework.*;
 
 public class TC1_LoginStep extends BaseClass {
 
@@ -16,10 +16,6 @@ public class TC1_LoginStep extends BaseClass {
 	@Given("User is on OMRBranch Login page")
 	public void user_is_on_omr_branch_login_page() throws FileNotFoundException, IOException {
 
-		getDriver(getPropertyFileValue("browser"));
-		launchUrl(getPropertyFileValue("url"));
-		// maximizeWindow();
-		implicitWait();
 
 	}
 

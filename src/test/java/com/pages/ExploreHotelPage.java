@@ -77,6 +77,8 @@ public class ExploreHotelPage extends BaseClass {
 
 	@FindBy(xpath = "//h5[text()='Explore Hotels']")
 	private WebElement textExploreHotel;
+	
+	
 
 	public WebElement getClkUserWelcome() {
 		return clkUserWelcome;
@@ -165,7 +167,7 @@ public class ExploreHotelPage extends BaseClass {
 	 */
 	public String loginSuccessMsg() {
 		
-		String actloginSuccessMsg = getTheText(getTextExploreHotel());
+		String actloginSuccessMsg = getTheText(getDdnWelcomeMsg());
 		return actloginSuccessMsg;
 	}
 	/**
@@ -183,7 +185,7 @@ public class ExploreHotelPage extends BaseClass {
 		jsInsert(getTxtCheckout(), checkOutDate);
 		selectText(getDdnNoOfRooms(), rooms);
 		selectText(getDdnNoOfAdults(), adults);
-		selectText(getTxtNoOfChild(), children);
+		insertValue(getTxtNoOfChild(), children);
 
 	}
 
@@ -197,8 +199,8 @@ public class ExploreHotelPage extends BaseClass {
 			String adults) {
 		selectText(getDdnState(), stateName);
 		selectText(getDdnCity(), cityName);
-		selectText(getTxtCheckin(), checkInDate);
-		selectText(getTxtCheckout(), checkOutDate);
+		jsInsert(getTxtCheckin(), checkInDate);
+		jsInsert(getTxtCheckout(), checkOutDate);
 		selectText(getDdnNoOfRooms(), rooms);
 		selectText(getDdnNoOfAdults(), adults);
 
@@ -299,6 +301,11 @@ public class ExploreHotelPage extends BaseClass {
 	public String getErrAdults() {
 		String actNoOfAdultsErrorMsg = getTheText(getErrorMsgNoOfAdults());
 		return actNoOfAdultsErrorMsg;
+	}
+	public void clickSearch() {
+		frameIn(getFrameIn());
+		btnClick(getBtnSearch());
+		frameOut();
 	}
 
 }

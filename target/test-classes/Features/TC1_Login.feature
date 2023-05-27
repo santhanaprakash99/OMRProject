@@ -5,7 +5,7 @@ Feature: Verifying omrbranch.com login Details
   Scenario Outline: Verifying login with valid Credentials
     Given User is on OMRBranch Login page
     When User enters the "<userName>" and "<password>"
-    Then User should verifies the login success message after click login button "Welcome Santhana Prakash"
+    Then User should verifies the login success message after click login button "Welcome Santhana"
 
     Examples: 
       | userName                    | password   |
@@ -14,7 +14,7 @@ Feature: Verifying omrbranch.com login Details
   Scenario Outline: Verifying login with valid Credentials using ENTER key
     Given User is on OMRBranch Login page
     When User enters the "<userName>" and "<password>" using Enter key
-    Then User should verifies the login success message after click login button "Welcome Santhana Prakash"
+    Then User should verifies the login success message after click login button "Welcome Santhana"
 
     Examples: 
       | userName                    | password   |

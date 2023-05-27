@@ -39,7 +39,7 @@ public class SelectHotelPage extends BaseClass {
 	@FindBy(xpath = "(//strong[@class='total-prize'])[1]")
 	private WebElement textHotelPrize;
 
-	@FindBy(xpath = "//a[text()='Continue'])[1]")
+	@FindBy(xpath = "(//a[text()=\"Continue\"])[1]")
 	private WebElement btnContinue;
 
 	@FindBy(id = "room_type")
@@ -48,7 +48,7 @@ public class SelectHotelPage extends BaseClass {
 	@FindBy(xpath = "//h5[text()='Select Hotel']")
 	private WebElement textSelectHotel;
 
-	@FindBy(xpath = "(//div[@class='col-md-5 hotel-suites'])[1]")
+	@FindBy(xpath = "(//div[@class=\"fliter_box_inner mb-4\"])[1]")
 	private WebElement textHotelName;
 
 	@FindBy(xpath = "//div[@class='col-md-5 hotel-suites']")
@@ -95,7 +95,7 @@ public class SelectHotelPage extends BaseClass {
 	 * @see This method is used to get select hotel success message
 	 * @return Which will return actSelecthHotelSuccessMsg as a String
 	 */
-	public String getSelectHotelMsg() {
+	public String successSelectHotelMsg() {
 		String actSuccessSelectMsg = getTheText(getTextSelectHotel());
 		return actSuccessSelectMsg;
 	}
@@ -121,9 +121,18 @@ public class SelectHotelPage extends BaseClass {
 		hotelName = getTheText(getTextHotelName());
 
 		hotelPrize = getTheText(getTextHotelPrize());
-
+		
+		//btnClick(getBtnContinue());
+	}
+	
+	/**
+	 * @author Santhanam
+	 * @since 12/05/2023
+	 * @see This method is used to click continue button
+	 */
+	
+	public void btnContinue() {
 		btnClick(getBtnContinue());
-
 	}
 	/**
 	 * @author Santhanam

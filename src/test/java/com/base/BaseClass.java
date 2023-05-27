@@ -303,4 +303,6 @@ public class BaseClass {
 		String value = (String) object;
 		return value;
 	}
+	
+	
 }

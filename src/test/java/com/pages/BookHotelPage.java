@@ -43,7 +43,7 @@ public class BookHotelPage extends BaseClass {
 	@FindBy(id = "user_email")
 	private WebElement txtEmailId;
 
-	@FindBy(id = "gst")
+	@FindBy(xpath = "(//input[@type=\"Checkbox\"])[1]")
 	private WebElement chkGST;
 
 	@FindBy(id = "gst_registration")
@@ -76,7 +76,7 @@ public class BookHotelPage extends BaseClass {
 	@FindBy(id = "invalid-email")
 	private WebElement errorMsgEmail;
 
-	@FindBy(id = "late")
+	@FindBy(xpath = "(//input[@type=\"Checkbox\"])[3]")
 	private WebElement chkLateCheckin;
 
 	@FindBy(id = "other_request")
@@ -100,7 +100,7 @@ public class BookHotelPage extends BaseClass {
 	@FindBy(id = "card_name")
 	private WebElement txtCardName;
 
-	@FindBy(id = "card_month")
+	@FindBy(name = "card_month")
 	private WebElement ddnCardMonth;
 
 	@FindBy(id = "card_year")
@@ -112,7 +112,7 @@ public class BookHotelPage extends BaseClass {
 	@FindBy(id = "submitBtn")
 	private WebElement btnSubmit;
 
-	@FindBy(xpath = "//div[@class='row']")
+	@FindBy(xpath = "//h2[text()=\"Book Hotel - Hyatt Regency Chennai Standard\"]")
 	private WebElement textBookHotel;
 
 	public WebElement getRdoMyself() {
@@ -266,8 +266,16 @@ public class BookHotelPage extends BaseClass {
 		insertValue(getTxtLastName(), lastName);
 		insertValue(getTxtPhoneNo(), mobileNo);
 		insertValue(getTxtEmailId(), emailAddress);
-		btnClick(getBtnNextGuest());
 
+	}
+
+	/**
+	 * @author Santhanam
+	 * @since 13/05/2023
+	 * @see This method is used to click next button
+	 */
+	public void btnNextGuest() {
+		btnClick(getBtnNextGuest());
 	}
 
 	/**
@@ -280,9 +288,9 @@ public class BookHotelPage extends BaseClass {
 	public void gstDetails(String regNo, String companyName, String companyAddress) {
 		btnClick(getChkGST());
 		insertValue(getTxtRegNo(), regNo);
-		insertValue(getTxtCardName(), companyName);
+		insertValue(getTxtCompanyName(), companyName);
 		insertValue(getTxtCompanyAddress(), companyAddress);
-		btnClick(getBtnNextGuest());
+
 	}
 
 	/**
@@ -320,8 +328,8 @@ public class BookHotelPage extends BaseClass {
 			selectText(getDdnCardType(), s.get("CardType"));
 			insertValue(getTxtCardNo(), s.get("CardNo"));
 			insertValue(getTxtCardName(), s.get("CardName"));
-			selectText(getDdnCardMonth(), s.get("Month"));
-			selectText(getDdnCardYear(), s.get("Year"));
+			insertValue(getDdnCardMonth(), s.get("Month"));
+			insertValue(getDdnCardYear(), s.get("Year"));
 			insertValue(getTxtCvv(), s.get("Cvv"));
 			break;
 
@@ -330,7 +338,7 @@ public class BookHotelPage extends BaseClass {
 			List<Map<String, String>> cCardDetails = dataTable.asMaps();
 			// getting Credit card details
 
-			Map<String, String> t = cCardDetails.get(5);
+			Map<String, String> t = cCardDetails.get(0);
 			selectText(getDdnCardType(), t.get("cardType"));
 			insertValue(getTxtCardNo(), t.get("CardNo"));
 			insertValue(getTxtCardName(), t.get("CardName"));
@@ -341,8 +349,19 @@ public class BookHotelPage extends BaseClass {
 		default:
 			break;
 		}
-		btnClick(getBtnSubmit());
 
+		// btnClick(getBtnSubmit());
+
+	}
+
+	/**
+	 * @author Santhanam
+	 * @since 13/05/2023
+	 * @see This method is used to click submit button
+	 */
+
+	public void btnSubmit() {
+		btnClick(getBtnSubmit());
 	}
 
 	/**

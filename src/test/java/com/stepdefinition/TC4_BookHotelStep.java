@@ -1,32 +1,62 @@
 package com.stepdefinition;
 
+import com.base.BaseClass;
+import com.pagemanager.PageObjectManager;
+
 import io.cucumber.java.en.*;
 
-public class TC4_BookHotelStep {
+public class TC4_BookHotelStep extends BaseClass{
 
+	PageObjectManager pom = new PageObjectManager();
+	
 	@Then("User should verify the book hotel success message {string} after accept the alert message")
 	public void user_should_verify_the_book_hotel_success_message_after_accept_the_alert_message(String string) {
-
+		
+		
 	}
+
+	@When("User add guest details {string},{string},{string},{string}, {string} and User add the GST details {string},{string} and {string}")
+	public void user_add_guest_details_and_user_add_the_gst_details_and(String salutation, String firstName, String lastName, String mobileNO,
+			String email, String regNo, String companyName, String companyAddress) {
+		
+		pom.getSelectHotelPage().acceptAlert();
+		pom.getBookHotelPage().guestDetails(salutation, firstName, lastName, mobileNO, email);
+		pom.getBookHotelPage().gstDetails(regNo, companyName, companyAddress);
+		pom.getBookHotelPage().btnNextGuest();
+	    
+	}
+
+
+
 
 	@When("User add guest details {string},{string},{string},{string} and {string}")
 	public void user_add_guest_details_and(String salutation, String firstName, String lastName, String mobileNO,
 			String email) {
-
+		
+		pom.getSelectHotelPage().acceptAlert();
+		pom.getBookHotelPage().guestDetails(salutation, firstName, lastName, mobileNO, email);
+		pom.getBookHotelPage().btnNextGuest();
+		
 	}
 
 	@When("User add the GST details {string},{string} and {string}")
 	public void user_add_the_gst_details_and(String regNo, String companyName, String companyAddress) {
-
+		pom.getBookHotelPage().gstDetails(regNo, companyName, companyAddress);
+		
 	}
 
 	@When("User add special request {string}")
 	public void user_add_special_request(String request) {
+		
+		pom.getBookHotelPage().specialRequest(request);
 
 	}
 
 	@When("User proceeds payment options {string}")
 	public void user_proceeds_payment_options(String cardType, io.cucumber.datatable.DataTable dataTable) {
+		
+		pom.getBookHotelPage().addPayment(cardType, dataTable);
+		pom.getBookHotelPage().btnSubmit();
 
 	}
 

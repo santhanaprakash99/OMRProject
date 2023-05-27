@@ -20,7 +20,8 @@ public class LoginPage extends BaseClass {
 	public LoginPage() {
 		PageFactory.initElements(driver, this);
 	}
-
+	@FindBy(xpath = "//a[text()=\"Book Hotel\"]")
+	private WebElement hotelBooking;
 	@FindBy(id = "email")
 	private WebElement txtUserName;
 	@FindBy(id = "pass")
@@ -29,6 +30,10 @@ public class LoginPage extends BaseClass {
 	private WebElement btnLogin;
 	@FindBy(id = "errorMessage")
 	private WebElement errorMsgLogin;
+	
+	public WebElement getHotelBooking() {
+		return hotelBooking;
+	}
 	public WebElement getTxtUserName() {
 		return txtUserName;
 	}
@@ -46,6 +51,7 @@ public class LoginPage extends BaseClass {
 	public void browserlaunch() {
 		launchBrowser();
 		launchUrl("https://www.omrbranch.com/");
+		
 	}
 	/**
 	 * @author Santhanam
@@ -55,9 +61,11 @@ public class LoginPage extends BaseClass {
 	 *            and password should be passed as a string
 	 */
 	public void login(String userName,String password) {
+		
 		insertValue(getTxtUserName(), userName);
 		insertValue(getTxtPassword(), password);
 		btnClick(getBtnLogin());
+		btnClick(getHotelBooking());
 		
 		
 	}
